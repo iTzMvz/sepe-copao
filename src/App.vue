@@ -1,7 +1,12 @@
+<script setup>
+import Menu from 'vue-material-design-icons/Menu.vue'
+import Magnify from 'vue-material-design-icons/Magnify.vue'
+</script>
 <template>
   <header>
     <div class="container">
-      <h1>titulo</h1>
+    <Menu class="icons" size="30"/>
+    <Magnify class="icons" size="30"/>
     </div>
     <div class="sub-header">
       <div class="sub-container">
@@ -15,18 +20,23 @@
   <RouterView />
 </template>
 <style scoped>
+.icons{
+  margin-inline: 10vw;
+}
 header {
   display: grid;
   height: 18.06vh;
   font-size: 1.2rem;
   background-color: #17842A;
-  width: 100vw  ;
+  width: 100vw;
   justify-content: center;
-
 }
 .container{
+  display: flex;
   height: 14.35vh;
-  width: 76.56vw;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
 }
 .sub-header{
   height: 3.70vh;
@@ -37,7 +47,7 @@ header {
 }
 .sub-container{
   display: flex;
-  width: 76.56vw;
+  width: 76.6vw;
   justify-content: flex-start;
   gap: 1vw; 
 }
