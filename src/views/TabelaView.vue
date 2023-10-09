@@ -12,12 +12,13 @@ onMounted(async () =>{
 
 </script>
 <template>
-    <h1>Home</h1>
-    <div>
+  
+    <h1>Tabela</h1>
+    <div class="table1">
   <table>
     <thead>
     <tr>
-      <th>posição</th>
+      <th>Classificação</th>
       <th>nome</th>
       <th>pontuação</th>
       <th>jogos</th>
@@ -38,7 +39,8 @@ onMounted(async () =>{
 h1{
     text-align: center;
 }
-table{
+.table1{
+    margin: 0px0,23;
     display: flex;
     text-align: center;
     justify-content: center;
