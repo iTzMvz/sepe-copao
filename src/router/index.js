@@ -12,7 +12,22 @@ const router = createRouter({
       path: '/tabela',
       name: 'tabelas',
       component: () => import('../views/TabelaView.vue')
-    }
+    },
+    {
+      path: '/artilharia',
+      name: 'artilharia',
+      component: () => import('../views/ArtilhariaView.vue')
+    },
+    {
+      path: '/chaveamento',
+      name: 'chaveamento',
+      component: () => import('../views/ChaveamentoView.vue')
+    },
+    {
+      path: '/jogos',
+      name: 'jogos',
+      component: () => import('../views/JogosView.vue')
+    },
   ]
 })
 
