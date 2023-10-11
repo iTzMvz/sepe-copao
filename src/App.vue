@@ -21,56 +21,37 @@ import Magnify from 'vue-material-design-icons/Magnify.vue'
   <RouterView />
 </template>
 <style scoped>
-.icons {
-  margin-inline: 10vw;
-}
-
-header {
-  display: grid;
+header{
   height: 18.06vh;
-  font-size: 1.2rem;
-  background-color: #17842A;
-  width: 100vw;
-  justify-content: center;
-}
-
-.container {
+  background-image: radial-gradient(#17842a 20%, #096318 80%);
   display: flex;
-  height: 14.35vh;
-  width: 100vw;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around
+}
+.container{
+  width: 60.94vw;
+  height: 13.89vh;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.sub-header {
+.sub-header{
+  display: flex;
   height: 3.70vh;
-  background-color: #00420C;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #00420c;
+  width: 100vw;
+  justify-content: center
 }
 
-.sub-container {
+.sub-container{
+  width: 60.94vw;
   display: flex;
-  width: 76.6vw;
   justify-content: flex-start;
-  gap: 1vw;
-}
-
-.sub-container a {
-  color: white;
-  font-size: 1em;
-}
-
-/*
-nav {
-  column-gap: 2rem;
-  margin-bottom: 0;
-  display: flex;
   align-items: center;
+  gap: 2vw;
 }
-
-nav a {
-  text-decoration: none;
-  color: #fff;
-}*/</style>
+.sub-container a{
+  color: white;
+}
+</style>

@@ -18,17 +18,31 @@ onMounted(async () => {
       <thead>
         <tr>
           <th>Classificação</th>
-          <th>nome</th>
-          <th>pontuação</th>
+          <th>p</th>
+          <th>jogos</th>
+          <th>v</th>
+          <th>e</th>
+          <th>d</th>
+          <th>gp</th>
+          <th>gc</th>
+          <th>sg</th>
+          <th>%</th>
           <th>jogos</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="times in tabela" :key="times.id">
-          <td>{{ times.posicao }}</td>
           <td>{{ times.time.nome_popular }}</td>
           <td>{{ times.pontos }}</td>
           <td>{{ times.jogos }}</td>
+          <td>{{ times.vitorias }}</td>
+          <td>{{ times.empates }}</td>
+          <td>{{ times.derrotas }}</td>
+          <td>{{ times.gols_pro }}</td>
+          <td>{{ times.gols_contra }}</td>
+          <td>{{ times.saldo_gols }}</td>
+          <td>%{{ times.aproveitamento }}</td>
+          <td>{{ times.ultimos_jogos }}</td>
         </tr>
       </tbody>
     </table>
