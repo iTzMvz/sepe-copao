@@ -10,9 +10,9 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <h1>Artilheiros do copão futsal 2023</h1>
-  <hr />
   <div class="jogadores">
+    <h1>Artilheiros do copão futsal 2023</h1>
+  <hr />
     <div class="jogador" v-for="jogador in artilharia" :key="jogador.id">
         <div class="right-side-jogador">
         <div class="img_jogador"> </div>
