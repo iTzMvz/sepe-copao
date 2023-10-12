@@ -6,6 +6,9 @@ import Magnify from 'vue-material-design-icons/Magnify.vue'
   <header>
     <div class="container">
       <Menu class="icons" size="30" />
+      <router-link to="/tabela" >
+        <img class="logo" src="https://i.ibb.co/M21tp39/COPAO.png" alt="">
+      </router-link>
       <Magnify class="icons" size="30" />
     </div>
     <div class="sub-header">
@@ -21,13 +24,11 @@ import Magnify from 'vue-material-design-icons/Magnify.vue'
   <RouterView />
 </template>
 <style scoped>
+
 header{
-  height: 18.06vh;
   background-image: radial-gradient(#17842a 20%, #096318 80%);
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: space-around
 }
 .container{
   width: 60.94vw;
@@ -35,21 +36,25 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 .sub-header{
   display: flex;
   height: 3.70vh;
   background: #00420c;
   width: 100vw;
-  justify-content: center
 }
-
+.logo{
+  width: 25vw;
+}
 .sub-container{
   width: 60.94vw;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   gap: 2vw;
+  margin-right: auto;
+    margin-left: auto;
 }
 .sub-container a{
   color: white;
