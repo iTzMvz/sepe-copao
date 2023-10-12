@@ -29,6 +29,7 @@ header{
   background-image: radial-gradient(#17842a 20%, #096318 80%);
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 .container{
   width: 60.94vw;
