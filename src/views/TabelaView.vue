@@ -32,7 +32,7 @@ onMounted(async () => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="time in tabela" :key="time.id">
+      <tr v-for="time in tabela.slice(0, 7)" :key="time.id">
         <td style="font-weight: 900;">{{ time.time.nome_popular }}</td>
         <td class="marks">{{ time.pontos }}</td>
         <td>{{ time.jogos }}</td>
