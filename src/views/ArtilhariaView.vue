@@ -2,12 +2,14 @@
 import { ref, onMounted } from 'vue'
 import api from '../plugins/axios'
 
+
 const artilharia = ref([])
 
 onMounted(async () => {
   let response = await api.get('campeonatos/2/artilharia')
   artilharia.value = response.data
 })
+
 </script>
 <template>
   <div class="jogadores">
