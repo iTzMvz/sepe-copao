@@ -1,38 +1,34 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import {db} from '@/firebase'
-import { collection, getDocs } from "firebase/firestore";
+import { db } from '@/firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 const tabela = ref([])
 
-
 onMounted(async () => {
-  const querySnapshot = await getDocs(collection(db, "times"));
+  const querySnapshot = await getDocs(collection(db, 'times'))
   let test = []
   querySnapshot.forEach((doc) => {
-  const time = {
-    id: doc.id,
-    nomeTime: doc.data().nomeTime.toUpperCase(),
-    vitorias: doc.data().vitorias,
-    derrotas: doc.data().derrotas,
-    empates: doc.data().empates,
-    jogos: doc.data().jogos,
-    gols_pro: doc.data().golsPro,
-    gols_contra:doc.data().golsContra,
-    aproveitamento: doc.data().porcentagem,
-    escudo: doc.data().escudo,
-    posicao: doc.data().posicao
-  }
-  test.push(time)
-
-});
-tabela.value = test
+    const time = {
+      id: doc.id,
+      nomeTime: doc.data().nomeTime.toUpperCase(),
+      vitorias: doc.data().vitorias,
+      derrotas: doc.data().derrotas,
+      empates: doc.data().empates,
+      jogos: doc.data().jogos,
+      gols_pro: doc.data().golsPro,
+      gols_contra: doc.data().golsContra,
+      aproveitamento: doc.data().porcentagem,
+      escudo: doc.data().escudo,
+    }
+    test.push(time)
+  })
+  tabela.value = test
 })
-
 </script>
 <template>
- <div class="table-page">
-  {{ tabela }}
+  <div class="table-page">
+  
     <h1>TABELA</h1>
     <table>
       <thead>
@@ -51,23 +47,34 @@ tabela.value = test
         </tr>
       </thead>
       <tbody>
-        <tr v-for="time in tabela.slice(0, 8)" :key="time.id">
-          <td class="nomeTime-box" style="font-weight: 900">
-            <span> {{ time.posicao }}º </span>
-            <span :class="time.posicao <= 8 && time.posicao >= 6 ? 'zona-r' : time.posicao <=5 && time.posicao >=4 ? 'zona-n' : 'zona-c' "> </span>
-            
-            <span><img style="width: 3vh" :src="time.escudo" alt="" /></span> 
-            
-            <span>{{ time.nomeTime }}</span>
+        <tr v-for="time in tabela.sort((a,b) => (b.vitorias * 3 + b.empates) - (a.vitorias * 3 + a.empates)).slice(0, 8)" :key="time.id">
+          <td style="font-weight: 900">
+            <div class="nomeTime-box">
+              <span>{{ tabela.indexOf(time) + 1 }}º </span>
+              <span
+                :class="
+                  time.posicao <= 8 && time.posicao >= 6
+                    ? 'zona-r'
+                    : time.posicao <= 5 && time.posicao >= 4
+                    ? 'zona-n'
+                    : 'zona-c'
+                "
+              >
+              </span>
+
+              <span><img style="width: 3vh" :src="time.escudo" alt="" /></span>
+
+              <span>{{ time.nomeTime }}</span>
+            </div>
           </td>
-          <td class="marks">{{ (time.vitorias * 3) + time.empates }}</td>
+          <td class="marks">{{ (time.vitorias * 3) + (time.empates) }}</td>
           <td>{{ time.jogos }}</td>
           <td class="marks">{{ time.vitorias }}</td>
           <td>{{ time.empates }}</td>
           <td class="marks">{{ time.derrotas }}</td>
           <td>{{ time.gols_pro }}</td>
           <td class="marks">{{ time.gols_contra }}</td>
-          <td>{{ (time.gols_pro - time.gols_contra) }}</td>
+          <td>{{ time.gols_pro - time.gols_contra }}</td>
           <td class="marks">{{ time.aproveitamento }}</td>
           <td class="ult_jogos">
             <span
@@ -89,25 +96,24 @@ h1 {
   font-weight: 900;
 }
 
-
-.nomeTime-box{
+.nomeTime-box {
   display: flex;
-  gap: 1vw;
   align-items: center;
+  gap: 1vw;
 }
-.zona-r{
+.zona-r {
   display: block;
   width: 2px;
   height: 2vh;
   background-color: red;
 }
-.zona-n{
+.zona-n {
   display: block;
   width: 2px;
   height: 2vh;
   background-color: grey;
 }
-.zona-c{
+.zona-c {
   display: block;
   width: 2px;
   height: 2vh;
