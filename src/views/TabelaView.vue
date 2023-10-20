@@ -18,8 +18,8 @@ onMounted(async () => {
       jogos: doc.data().jogos,
       gols_pro: doc.data().golsPro,
       gols_contra: doc.data().golsContra,
-      aproveitamento: doc.data().porcentagem,
       escudo: doc.data().escudo,
+
     }
     test.push(time)
   })

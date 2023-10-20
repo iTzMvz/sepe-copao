@@ -27,77 +27,91 @@ onMounted(async () => {
 <template>
   <div class="playerCard">
     <div class="pic">
-      <img
-        class="pic"
-        src="https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-14.jpg"
-        alt=""
-      />
+      <img class="pic" src="https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-14.jpg"
+        alt="" />
     </div>
-
     <div class="lowerPart">
-      <div class="name">
-        <h1>7</h1>
-        <span class="upLine"></span>
-        <h1>Muller</h1>
+      <div class="div-1">
+        <h1>NAME </h1>
+        <div class="box">
+          <font-awesome-icon class="icons" :icon="['fas', 'shirt']" />
+          <h1> 10</h1>
+        </div>
       </div>
-      <span class="line"></span>
-      <div class="teamInfo">
-        <img src="https://i.ibb.co/JnpYXwh/vermelho.png" alt="" />
-        <h2>ALA</h2>
+      <span></span>
+      <span></span>
+      <div class="box">
+        <font-awesome-icon :icon="['fas', 'futbol']" />
+        <h1>10</h1>
+        <font-awesome-icon :icon="['fas', 'shoe-prints']" />
+        <h1>10</h1>
       </div>
+      <span></span>
+      <h1>NAME</h1>
+      <span></span>
+
     </div>
   </div>
 </template>
 <style scoped>
-.lowerPart{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.name {
+.div-1 {
   display: flex;
   gap: 2vw;
-  align-items: center;
 }
-.teamInfo {
+
+.box {
   display: flex;
-  flex-direction: row;
-}
-.line {
-  width: 70%;
-  height: 0.2vh;
-  background-color: rgb(61, 61, 61);
-  border-radius: 20%;
+  align-items: center;
 
 }
-.upLine {
-  height: 70%;
-  width: 0.2vw;
-  background-color: rgb(61, 61, 61);
-  border-radius: 20%;
+
+.icons {
+  width: 2vw;
+  height: 2vw;
 }
+
+.lowerPart {
+  display: flex;
+  height: 20vh;
+  width: 20vw;
+  background-color: aqua;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+span {
+  width: 15vw;
+  height: 0.2vh;
+  background-color: black;
+  border-radius: 10%;
+}
+
 img {
-  width: 2.5vw;
+  width: 1.5vw;
+  height: 1.5vw;
 }
+
 h1 {
-  font-weight: 500;
+  font-weight: 700;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.253);
 }
+
 .pic {
   width: 25vh;
   height: 25vh;
   background-color: rgb(0, 0, 0);
 }
+
 .playerCard {
-    gap: 2vh;
+  gap: 2vh;
   justify-content: center;
   display: flex;
-  width: 15vw;
-  height: 44vh;
-  background-color: rgb(255, 255, 255);
+  width: 20vw;
+  height: 55vh;
+  background-color: rgb(255, 0, 0);
   border-radius: 8%;
   box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.089);
   flex-direction: column;
   align-items: center;
-}
-</style>
+}</style>
