@@ -98,18 +98,25 @@ function toggleMenu() {
   box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.384);
 }
 .menuOn li {
-  font-size: 1.3em;
   text-decoration: none;
+  font-size: 1.3em;
+ 
+}
+a{
+  color: rgb(39, 39, 39);
 }
 .menuElement {
   padding-left: 1vw;
 }
 li :hover {
   cursor: pointer;
-  color: black;
+  color: rgb(0, 0, 0);
+  transition: .2s;
+
 }
 li :active {
   color: green;
+
 }
 .menuOn li:first-child {
   padding-top: 5vh;
@@ -122,7 +129,6 @@ ul {
   gap: 2vw;
   display: flex;
   flex-direction: column;
-  color: rgb(39, 39, 39);
 }
 header {
   background-image: radial-gradient(#17842a 20%, #096318 80%);

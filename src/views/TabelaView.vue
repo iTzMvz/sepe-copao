@@ -53,9 +53,9 @@ onMounted(async () => {
               <span>{{ tabela.indexOf(time) + 1 }}º </span>
               <span
                 :class="
-                  time.posicao <= 8 && time.posicao >= 6
+                  (tabela.indexOf(time) + 1) <= 8 && (tabela.indexOf(time)) + 1 >= 6
                     ? 'zona-r'
-                    : time.posicao <= 5 && time.posicao >= 4
+                    : (tabela.indexOf(time) + 1) <= 5 && (tabela.indexOf(time) + 1) >= 4
                     ? 'zona-n'
                     : 'zona-c'
                 "
@@ -75,7 +75,7 @@ onMounted(async () => {
           <td>{{ time.gols_pro }}</td>
           <td class="marks">{{ time.gols_contra }}</td>
           <td>{{ time.gols_pro - time.gols_contra }}</td>
-          <td class="marks"> {{ (((time.vitorias + time.derrotas + time.empates) / time.vitorias * 10 - 100) * -1).toFixed(0) }}%</td>
+          <td class="marks">{{ Number(time.vitorias) / Number(time.jogos) * 100 }}</td>
           <td class="ult_jogos">
             <span
               v-for="jogo in time.ultimos_jogos"
