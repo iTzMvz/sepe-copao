@@ -62,7 +62,7 @@ onMounted(async () => {
               >
               </span>
 
-              <span><img style="width: 3vh" :src="time.escudo" alt="" /></span>
+              <span style="display: flex;"><img style="width: 4vh" :src="time.escudo" alt="" /></span>
 
               <span>{{ time.nomeTime }}</span>
             </div>
@@ -75,7 +75,7 @@ onMounted(async () => {
           <td>{{ time.gols_pro }}</td>
           <td class="marks">{{ time.gols_contra }}</td>
           <td>{{ time.gols_pro - time.gols_contra }}</td>
-          <td class="marks">{{ time.aproveitamento }}</td>
+          <td class="marks"> {{ (((time.vitorias + time.derrotas + time.empates) / time.vitorias * 10 - 100) * -1).toFixed(0) }}%</td>
           <td class="ult_jogos">
             <span
               v-for="jogo in time.ultimos_jogos"

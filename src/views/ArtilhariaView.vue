@@ -1,27 +1,39 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import api from '../plugins/axios'
+import { db } from '@/firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
-
-const artilharia = ref([])
+const jogadores = ref([])
 
 onMounted(async () => {
-  let response = await api.get('campeonatos/2/artilharia')
-  artilharia.value = response.data
-})
+  const querySnapshot = await getDocs(collection(db, 'jogadores'))
+  let test = []
+  querySnapshot.forEach((doc) => {
+    const jogador = {
+      id: doc.id,
+      nomeJogador: doc.data().nome.toUpperCase(),
+      posicao: doc.data().posição.toUpperCase(),
+      gols: doc.data().gols,
+      escudo: doc.data().escudo,
+      camisa: doc.data().numeroCamisa
 
+    }
+    test.push(jogador)
+  })
+  jogadores.value = test
+})
 </script>
 <template>
   <div class="jogadores">
     <h1>Artilheiros do copão futsal 2023</h1>
   <hr />
-    <div class="jogador" v-for="jogador in artilharia" :key="jogador.id">
+    <div class="jogador" v-for="jogador in jogadores.sort((a,b) => (b.gols) - (a.gols)).slice(0,5)" :key="jogador.id">
         <div class="right-side-jogador">
         <div class="img_jogador"> </div>
-        <div class="escudo-time" > <img style="width:3vh;" :src="jogador.time.escudo" alt=""> </div>
+        <div class="escudo-time" > <img style="width:3vh;" :src="jogador.escudo" alt=""> </div>
       <div class="jogador-nome-box">
-        <div class="jogador_nome">{{ jogador.atleta.nome_popular }}</div>
-        <div class="jogador_posicao">{{ jogador.atleta.posicao.nome }}</div>
+        <div class="jogador_nome">{{ jogador.nomeJogador }}</div>
+        <div class="jogador_posicao">{{ jogador.posicao}} <span class="bar"></span> {{ jogador.camisa }}</div>
       </div>
     </div>
 
@@ -31,6 +43,12 @@ onMounted(async () => {
   </div>
 </template>
 <style scoped>
+.bar{
+  display: block;
+  width: 2px;
+  height: 1.5vh;
+  background-color: rgb(0, 0, 0);
+}
 .jogadores{
     padding: 54px 0px 0px 0px;
     display: flex;
@@ -64,7 +82,7 @@ onMounted(async () => {
     display: flex;
     height: 8vh;
     align-items: flex-end;
-    width: 2.0vw;
+    width: 3.0vw;
     justify-content: center
 }
 .jogador_nome{
@@ -72,7 +90,10 @@ onMounted(async () => {
     font-size:1.4em;
 }
 .jogador_posicao{
-    color: #414141;
+    color: #5c5c5c;
+    display: flex;
+    align-items: center;
+    gap: 0.7vw;
 }
 .gols{
     font-weight: 700;
