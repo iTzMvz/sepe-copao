@@ -1,89 +1,102 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { collection, getDocs } from 'firebase/firestore'
-
+import { onMounted } from 'vue'
 const props = defineProps({
   jogador: Object
 })
 
-const jogadores = ref([])
-
-onMounted(async () => {
-  const querySnapshot = await getDocs(collection(db, 'jogadores'))
-  let test = []
-  querySnapshot.forEach((doc) => {
-    const jogador = {
-      id: doc.id,
-      nomeJogador: doc.data().nome.toUpperCase(),
-      posicao: doc.data().posição.toUpperCase(),
-      gols: doc.data().gols,
-      escudo: doc.data().escudo
-    }
-    test.push(jogador)
-  })
-  jogadores.value = test
+onMounted(()=> {
+  console.log(props.jogador)
 })
 </script>
 <template>
   <div class="playerCard">
     <div class="pic">
-      <img class="pic" src="https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-14.jpg"
-        alt="" />
+      
     </div>
-    <div class="lowerPart">
-      <div class="div-1">
-        <h1>NAME </h1>
-        <div class="box">
-          <font-awesome-icon class="icons" :icon="['fas', 'shirt']" />
-          <h1> 10</h1>
-        </div>
+    <div class="nameBox">
+      <h1 class="name">{{props.jogador.nomeJogador}}</h1>
+      <h1 class="pos">{{props.jogador.posicao}}</h1>
+    </div>
+    <span class="span"></span>
+    <div class="stats">
+      <div class="statsMiniBox">
+        <font-awesome-icon class="icon" :icon="['fas', 'futbol']" />
+        <h1>{{props.jogador.gols}}</h1>
       </div>
-      <span></span>
-      <span></span>
-      <div class="box">
-        <font-awesome-icon :icon="['fas', 'futbol']" />
-        <h1>10</h1>
-        <font-awesome-icon :icon="['fas', 'shoe-prints']" />
-        <h1>10</h1>
-      </div>
-      <span></span>
-      <h1>NAME</h1>
-      <span></span>
+      <div class="statsMiniBox"><font-awesome-icon class="icon" :icon="['fas', 'shoe-prints']" />
+        <h1>{{props.jogador.assits}}</h1></div>
+      <div class="statsMiniBox"><span class="cardV"></span>
+        <h1>{{props.jogador.cardV}}</h1></div>
+      <div class="statsMiniBox"><span class="cardA"></span>
+        <h1>{{props.jogador.cardY}}</h1></div>
+  </div>
 
-    </div>
+
   </div>
 </template>
 <style scoped>
-.div-1 {
+.icon{
+  width: 2vw;
+  height: 2vw;
+}
+.statsMiniBox{
+  height: 50%;
+  width: 10vh;
   display: flex;
-  gap: 2vw;
+align-items: center;
+justify-content: space-around;
+}
+.stats{
+  width: 20vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+.nameBox{
+  margin-top: 5px;
+  width: 20vw;
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+  justify-content: center;
+}
+.pos{
+  font-size: 1.3em;
+  color: #096318;
+}
+.name{
+  font-weight: 900;
 }
 
-.box {
-  display: flex;
-  align-items: center;
+.cardA {
+  width: 1vw;
+  height: 3vh;
+  background-color: yellow;
+  border-radius: 20%;
+}
 
+.cardV {
+  width: 1vw;
+  height: 3vh;
+  background-color: rgb(255, 0, 0);
+  border-radius: 20%;
 }
 
 .icons {
   width: 2vw;
   height: 2vw;
+  color: rgb(0, 0, 0);
 }
 
-.lowerPart {
-  display: flex;
-  height: 20vh;
-  width: 20vw;
-  background-color: aqua;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-span {
-  width: 15vw;
+
+.span {
+  width: 18vw;
   height: 0.2vh;
-  background-color: black;
+  background-color: rgb(136, 136, 136);
   border-radius: 10%;
 }
 
@@ -92,26 +105,25 @@ img {
   height: 1.5vw;
 }
 
-h1 {
-  font-weight: 700;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.253);
-}
+
 
 .pic {
-  width: 25vh;
-  height: 25vh;
-  background-color: rgb(0, 0, 0);
+  border-radius: 8%;
+  width: 20vw;
+  height: 30vh;
+  background-color: rgb(255, 255, 255);
+  box-shadow: inset 0px -5px 100px #0000001F;
 }
 
 .playerCard {
-  gap: 2vh;
-  justify-content: center;
+  justify-content: flex-start;
   display: flex;
   width: 20vw;
   height: 55vh;
-  background-color: rgb(255, 0, 0);
+  background-image: radial-gradient(#FFFFFF 20%, #FFFFFF 80%);
   border-radius: 8%;
   box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.089);
   flex-direction: column;
   align-items: center;
+  box-shadow: 4px 4px 0px #096318;
 }</style>

@@ -15,7 +15,9 @@ onMounted(async () => {
       nomeJogador: doc.data().nome.toUpperCase(),
       posicao: doc.data().posição.toUpperCase(),
       gols: doc.data().gols,
-      escudo: doc.data().escudo
+      escudo: doc.data().escudo,
+      assists: doc.data().assits,
+
     }
     test.push(jogador)
   })
@@ -25,7 +27,18 @@ onMounted(async () => {
 
 </script>
 <template>
-  <playerCard></playerCard>
+  <div class="jogadoresScreen"> 
+    <playerCard v-for="jogador in jogadores" :key="jogador.id" :jogador="jogador"></playerCard>
+
+  </div>
 </template>
 <style scoped>
+.jogadoresScreen{
+  padding: 6vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw;
+}
 </style>
