@@ -21,6 +21,7 @@ onMounted(async () => {
       aproveitamento: doc.data().porcentagem,
       escudo: doc.data().escudo,
       pontos: doc.data().vitorias * 3 + doc.data().empates,
+      
     }
     test.push(time)
   })

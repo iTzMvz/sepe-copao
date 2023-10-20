@@ -16,7 +16,12 @@ onMounted(async () => {
       posicao: doc.data().posição.toUpperCase(),
       gols: doc.data().gols,
       escudo: doc.data().escudo,
-      assists: doc.data().assits,
+      assists: doc.data().assists,
+      foto: doc.data().foto,
+      cardY: doc.data().cardY,
+      cardV: doc.data().cardV
+
+
 
     }
     test.push(jogador)

@@ -39,7 +39,7 @@ function toggleMenu() {
       <router-link to="/tabela">
         <img class="logo" src="https://i.ibb.co/M21tp39/COPAO.png" alt="" />
       </router-link>
-      <Magnify class="icons" size="30" />
+      <div></div>
     </div>
     <div class="sub-header">
       <div class="sub-container">

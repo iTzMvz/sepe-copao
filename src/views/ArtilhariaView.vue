@@ -15,7 +15,9 @@ onMounted(async () => {
       posicao: doc.data().posição.toUpperCase(),
       gols: doc.data().gols,
       escudo: doc.data().escudo,
-      camisa: doc.data().numeroCamisa
+      camisa: doc.data().numeroCamisa,
+      foto: doc.data().foto,
+
 
     }
     test.push(jogador)
@@ -29,7 +31,7 @@ onMounted(async () => {
   <hr />
     <div class="jogador" v-for="jogador in jogadores.sort((a,b) => (b.gols) - (a.gols)).slice(0,5)" :key="jogador.id">
         <div class="right-side-jogador">
-        <div class="img_jogador"> </div>
+        <div class="img_jogador"><img class="img_jogador" :src="jogador.foto" alt=""> </div>
         <div class="escudo-time" > <img style="width:3vh;" :src="jogador.escudo" alt=""> </div>
       <div class="jogador-nome-box">
         <div class="jogador_nome">{{ jogador.nomeJogador }}</div>
