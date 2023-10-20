@@ -16,7 +16,7 @@ const router = createRouter({
     {
       path: '/tabela2',
       name: 'tabelas2',
-      component: () => import('../views/TabelaViewCopy.vue')
+      component: () => import('../views/TabelaViewBackup.vue')
     },
     {
       path: '/artilharia',
