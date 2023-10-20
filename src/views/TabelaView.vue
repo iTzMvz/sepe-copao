@@ -18,12 +18,14 @@ onMounted(async () => {
       jogos: doc.data().jogos,
       gols_pro: doc.data().golsPro,
       gols_contra: doc.data().golsContra,
+      aproveitamento: doc.data().porcentagem,
       escudo: doc.data().escudo,
-
+      pontos: doc.data().vitorias * 3 + doc.data().empates,
     }
     test.push(time)
   })
   tabela.value = test
+  console.log(tabela.value)
 })
 </script>
 <template>
@@ -47,7 +49,7 @@ onMounted(async () => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="time in tabela.sort((a,b) => (b.vitorias * 3 + b.empates) - (a.vitorias * 3 + a.empates)).slice(0, 8)" :key="time.id">
+        <!-- <tr v-for="time in tabela.sort((a, b) => a.pontos == b.pontos ? (b.vitorias * 3 + b.empates + (b.gols_pro - b.gols_contra)) - (a.vitorias * 3 + a.empates + a.gols_pro - a.gols_contra) : b.pontos - a.pontos).slice(0, 8)" :key="time.id">
           <td style="font-weight: 900">
             <div class="nomeTime-box">
               <span>{{ tabela.indexOf(time) + 1 }}º </span>
@@ -68,6 +70,45 @@ onMounted(async () => {
             </div>
           </td>
           <td class="marks">{{ (time.vitorias * 3) + (time.empates) }}</td>
+          <td>{{ time.jogos }}</td>
+          <td class="marks">{{ time.vitorias }}</td>
+          <td>{{ time.empates }}</td>
+          <td class="marks">{{ time.derrotas }}</td>
+          <td>{{ time.gols_pro }}</td>
+          <td class="marks">{{ time.gols_contra }}</td>
+          <td>{{ time.gols_pro - time.gols_contra }}</td>
+          <td class="marks">{{ Number(time.vitorias) / Number(time.jogos) * 100 }}</td>
+          <td class="ult_jogos">
+            <span
+              v-for="jogo in time.ultimos_jogos"
+              :key="jogo.legth"
+              :class="jogo == 'v' ? 'v' : jogo == 'd' ? 'd' : 'e'"
+            >
+            </span>
+          </td>
+        </tr>
+      </tbody> -->
+     <tr v-for="time in tabela.sort((a,b) => a.pontos == b.pontos ? (b.pontos + b.gols_pro - b.gols_contra) - (a.pontos + a.gols_pro - a.gols_contra): b.pontos - a.pontos).slice(0, 8)" :key="time.id">
+          <td style="font-weight: 900">
+            <div class="nomeTime-box">
+              <span>{{ tabela.indexOf(time) + 1 }}º </span>
+              <span
+                :class="
+                  (tabela.indexOf(time) + 1) <= 8 && (tabela.indexOf(time)) + 1 >= 6
+                    ? 'zona-r'
+                    : (tabela.indexOf(time) + 1) <= 5 && (tabela.indexOf(time) + 1) >= 4
+                    ? 'zona-n'
+                    : 'zona-c'
+                "
+              >
+              </span>
+
+              <span style="display: flex;"><img style="width: 4vh" :src="time.escudo" alt="" /></span>
+
+              <span>{{ time.nomeTime }}</span>
+            </div>
+          </td>
+          <td class="marks">{{ (time.pontos) }}</td>
           <td>{{ time.jogos }}</td>
           <td class="marks">{{ time.vitorias }}</td>
           <td>{{ time.empates }}</td>
@@ -175,3 +216,5 @@ th {
   padding: 5px 10px;
 }
 </style>
+
+
